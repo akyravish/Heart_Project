@@ -1,8 +1,9 @@
-const counting = document.getElementById('counting');
+const count = document.getElementById('counting');
 const heart = document.getElementById('hearts');
 const image = document.querySelector('.image');
 
 let startTime = 0;
+let startingCount = 0;
 
 const createHeart = (e) => {
 	const insideTop = e.offsetY;
@@ -13,9 +14,15 @@ const createHeart = (e) => {
 	iEl.style.top = `${insideTop}px`;
 	iEl.style.left = `${insideLeft}px`;
 	heart.appendChild(iEl);
+
+	setTimeout(() => {
+		iEl.remove();
+	}, 1000);
+
+	count.innerText = ++startingCount;
 };
 
-window.addEventListener('click', (e) => {
+image.addEventListener('click', (e) => {
 	if (startTime === 0) {
 		startTime = new Date().getTime();
 	} else {
